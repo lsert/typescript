@@ -95,5 +95,56 @@ interface {
 }
 ```
 他表示 只要键名为number或者string类型就可以，不用管他到底是什么，也不用管他有多少个属性。
+一种常见的应用就是类数组对象
+```
+interface NumberDictionary{
+  [index:number] :string;
+  length:number;
+  name:string;
+}
+```
+数组作为一种特殊的索引类型也可以用来当做值
+```
+interface Test{
+  [index:number] :string;
+}
+const arr:Test = ["string1","string2"];
+```
+
+需要注意的点
++ 类型定义冲突  IndexType();
+```
+ interface conflict {
+    [index: number]: string;
+    30: Array<string>;
+  }
+
+  let f: conflict = {
+    0: 'abc',
+    1: 'cde',
+    2: 'edf',
+    30: ['gagag']
+  }
+```
+上面代码中 我们已经定义了 一个`[index:number]:string`的索引类型。然后我们又定义了一个30属性，而30也是属于`[index:number]`类型的。
+这个时候，两个属性的类型如果不一致就会出错。 因为我们已经定义了所有的字段都为number且类型都为string,但是我们又定义了一个number字段，类型却不是string。 
+同样，当index为string时候，也会有同样的状况
+```
+interface conflict {
+    [index: string]: string;
+    length:number;
+  }
+
+  let f: conflict = {
+    a:'this is a',
+    length: 1
+  }
+```
 
 
+## 接口继承
+例子 interfaceExtend();
+注意点，
++ 子接口不能修改父接口的类型
++ 可以继承多个接口
++ 继承的多个接口之间类型不能冲突
