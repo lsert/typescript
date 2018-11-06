@@ -90,7 +90,7 @@ interface {
 这个时候就会用到索引类型。
 ```
 interface {
-  [index:number] :string;
+  [index:number]: string;
   [index:string]: string;
 }
 ```

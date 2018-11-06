@@ -74,5 +74,3 @@ a.addClickListener(function () {
   console.log(this.appendChild);
 });
 ```
-
-## 函数重载

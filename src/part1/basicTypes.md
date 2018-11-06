@@ -53,7 +53,6 @@ const arr:Array<string> = [];
 这段话表示 arr是一个数组，且数组中的每个元素的类型是string。
 
 还有另外一种表示数组的方式
-
 ```
 const arr:string[] = [];
 ```
@@ -63,12 +62,8 @@ const arr:string[] = [];
 ## Tuple
 Tuple是描述一个已知类型的固定长度数组的类型。
 ```
-const tuple: [string, number] = ['吕佳文', 25];
+const tuple: [string, number, boolean] = ['吕佳文', 25, true];
 ```
-
-
-
-
 
 ## Enum
 ```
@@ -120,7 +115,7 @@ enum Color2 { Green = 20, Red, Blue };
 ```
 enum Color2 { Green = 20, Red, Blue };
 
-// Color2 { '20': 'Red', '21': 'Green', '22': 'Blue', Red: 20, Green: 21, Blue: 22 }
+// Color2 { '20': 'Green', '21': 'Red', '22': 'Blue', Red: 20, Green: 21, Blue: 22 }
 ```
 + 多个被赋值
 ```
@@ -204,11 +199,9 @@ A();
 ```
 如果我们期待返回的是undefined，但是我们没有返回任何值，就会出现类型上的问题。
 
-
 要怎么去理解这个东西，我们可以浅显的认为, undefined === void; 但是 void !== undefined;
 
 我们通常认为没有返回值的函数返回的是`undefined`。其实应该不是，应该是 如果一个值是一个没有返回值函数返回的值，那么这个值就是没有值，而不是说函数的返回值是`undefined`，而没有值的值，就会被认为是`undefined`。
-
 
 
 # Null and Undefined
@@ -289,7 +282,7 @@ function Assertions(value: Array<string> | string, type: string) {
 我们看下使用类型断言怎么去处理。
 
 ```
-function Assertions(value: Array<string> | string, type: string) {
+function Assertions(value:any, type: string) {
   if (type === '1') {
     value = (value as string).split(' ');
   }

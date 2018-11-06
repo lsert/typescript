@@ -97,6 +97,7 @@ function interfaceExtend() {
   interface BoxIF {
     name: string;
     age: number;
+    gender: 'a' | 'b';
   }
 
   interface BoxIF2 extends BoxIF {
@@ -122,8 +123,9 @@ function interfaceExtend() {
 
   //  可以继承多个接口
   interface colorIF {
-    name: string;
+    gender: 'a';
   }
+  
   interface BoxIF4 extends colorIF, BoxIF {
 
   }

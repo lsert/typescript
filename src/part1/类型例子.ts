@@ -59,7 +59,6 @@ function Assertions2(value: Array<string> | string, type: string) {
   let a: object = /regExp/g;
   let lens = (a as Array<string>).length;
 
-
   if (type === '1') {
     value = (value as string).split(' ');
   }

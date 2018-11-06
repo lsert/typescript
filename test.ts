@@ -1,6 +1,7 @@
-import React from './a.js';
+import React from 'react';
 
-function A(): undefined {
-  console.log(window);
+interface NumberDictionary {
+  [index: number]: string | number;
 }
-A();
+
+let a: NumberDictionary = [];
