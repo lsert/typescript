@@ -1,7 +1,6 @@
 import React from 'react';
 
 function ClassInterface() {
-
   interface BoxIF {
     name: string;
     changeName(newName: string): this;

@@ -17,6 +17,15 @@ function GenInterfaceArray() {
 
   let a: Array2<string> = ['a', 'b'];
 
+  class ArrayMore<泛型1, 泛型2> {
+    [index: number]: 泛型1;
+    length: number = 0;
+    push(...arg: Array<泛型1>): 泛型2 | void {
+
+    }
+    //...code
+  }
+  let a1: ArrayMore<string, number> = ['a', 'b'];
 
 
   // 数组的类大致类似于
@@ -134,5 +143,5 @@ function GenConstraints2() {
     length: number,
     name: string,
   }
-  >;
+    >;
 }

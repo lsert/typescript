@@ -1,7 +1,20 @@
 import React from 'react';
 
-interface NumberDictionary {
-  [index: number]: string | number;
+interface BoxIF {
+  changeCode(): number;
+  name: string;
 }
 
-let a: NumberDictionary = [];
+interface BoxConstuctor {
+  add(): boolean;
+}
+
+const Box: BoxConstuctor = class implements BoxIF {
+  static add() {
+    return true;
+  }
+  name = '123';
+  changeCode() {
+    return 12;
+  }
+}
