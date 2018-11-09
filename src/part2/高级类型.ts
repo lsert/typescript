@@ -243,24 +243,35 @@ function Exclude() {
 
 function ExcludeSimple() {
   interface Box {
-    name: number,
+    name: string
     age: number,
+    value: "jjjj"
   }
 
   interface Person {
-    readonly name: number;
+    name: string;
     title: string;
     value?: number;
   }
 
-  type Merge<A, B> = {
-    [key in keyof (A & B)]: key extends keyof B ? B[key] : key extends keyof A ? A[key] : never;
+  type ss = Extract<keyof Person, keyof Box>
+
+  type Merge<A, B> = Pick<A, Exclude<keyof A, keyof B>> & B;
+  type Merge2<A, B> =
+    {
+      [key in Exclude<keyof A, keyof B>]: A[key]
+    }
+    &
+    {
+      [key in keyof B]: B[key];
+    };
+
+
+  type sd = Merge2<Box, Person>
+  let sasd: sd = {
+    name: '12',
+    age: 12,
+    title: "23",
   }
-
-  type a = Merge<Box, Person>;
-
-  type Omit<T, K> = Pick<T, Exclude<keyof T, keyof K>>
-
-  type s = Omit<Person, Box>;
 
 }

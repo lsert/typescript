@@ -5,21 +5,43 @@ type Merge<A, B> = {
 interface PropsIF {
   type?: 'textarea' | 'text';
 }
-type ss<T> = Readonly<Merge<T, PropsIF>>
 
-class Input<T> extends React.Component<Merge<T, PropsIF>, {}>{
-  constructor(props: Merge<T, PropsIF>) {
+type InputType<T, K = {}> = T extends 'textarea' ? TextareaHTMLAttributes<HTMLTextAreaElement & K> : InputHTMLAttributes<HTMLInputElement & K>
+
+function isTextarea(other: InputType<'textarea' | 'input'>, type?: 'textarea' | 'text'): other is InputType<'textarea'> {
+  return type === 'textarea';
+}
+
+function isInput(other: InputType<'textarea'> | InputType<'input'>, type?: 'textarea' | 'text'): other is InputType<'input'> {
+  return type !== 'textarea';
+}
+
+class Input<T, K> extends React.Component<Merge<InputType<T, K>, PropsIF>, {}>{
+  constructor(props: Merge<InputType<T, K>, PropsIF>) {
     super(props);
   }
   render() {
-    if (this.props.type === 'textarea') {
+    const { type, ...others } = this.props as PropsIF;
+    if (isTextarea(others, this.props.type)) {
       return <div>
-        <textarea></textarea>
+        <textarea {...others}></textarea>
       </div >
     }
-    return <input />
+    if (isInput(others, this.props.type)) {
+      return <input {...others} />
+    }
+    return null;
   }
 }
 
 
-new Input<{ name: string, age: number }>({ type: 'textarea', name: 'lvs', age: 125 });
+new Input<'text', { haha: number }>({
+  type: 'textarea',
+  name: 'lvs',
+  src: "sad",
+  onChange: (e) => {
+    console.log(e.target.haha);
+  }
+});
+
+const A = <Input<'text', { haha: number }> src="111" onChange={(e) => { e.target.haha }} />
