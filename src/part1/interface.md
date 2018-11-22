@@ -111,6 +111,23 @@ interface Test{
 const arr:Test = ["string1","string2"];
 ```
 
+例子  
+我们在写React里面定义内联CSS的时候。可能会用到如下的写法
+```
+let Style = {
+  box:{width:'auto'},
+  input:{height:100},
+}
+```
+用typescript描述就是
+```
+let Style: {[x:string]:CSSProperties} = {
+  box:{width:'auto'},
+  input:{height:100},
+}
+```
+
+
 需要注意的点
 + 类型定义冲突  IndexType();
 ```
